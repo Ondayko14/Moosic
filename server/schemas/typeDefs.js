@@ -14,6 +14,12 @@ const typeDefs = gql`
     posts: [Posts]
   }
 
+ type Posts {
+   _id: ID
+  text: String
+ } 
+  
+  
   type Auth {
     token: ID
     user: User

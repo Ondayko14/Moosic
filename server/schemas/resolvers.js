@@ -3,7 +3,7 @@ const { User, Comment, Post} = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers= { 
-    Que
+    
 
 
 
@@ -19,6 +19,8 @@ const resolvers= {
 
 
 }
+
+module.exports = resolvers;
 
 
 
