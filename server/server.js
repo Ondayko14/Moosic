@@ -1,5 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const mongoose = require('mongoose');
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
@@ -18,9 +19,17 @@ server.applyMiddleware({ app });
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-if (process.env.NODE_ENV === 'production') {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/moosicdb', {
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.set('debug', true);
+
+/* if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '')));
-}
+} */
 
 db.once('open', () => {
     app.listen(PORT, () => {
