@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Ondayko14/Moosic/issues"
   },
-  "homepage": "https://github.com/Ondayko14/Moosic#readme"
+  "homepage": "https://github.com/Ondayko14/Moosic#readme",
+  "dependencies": {
+    "mongoose": "^5.12.2"
+  }
 }
