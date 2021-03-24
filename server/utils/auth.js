@@ -1,35 +1,45 @@
-import decode from "jwt-decode";
+const jwt = require('jsonwebtoken');
 
-class AuthService {
-  getProfile() {
-    return decode(this.getToken());
-  }
-  loggedIn() {
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
-  }
-  isTokenExpired(token) {
-    try {
-      const decoded = decode(token);
-      if (decoded.exp < Date.now() / 1000) {
-        return true;
-      } else return false;
-    } catch (err) {
-      return false;
+const secret = 'password';
+const expiration = '6h';
+
+module.exports = {
+  authMiddleware: function ({ req }) {
+    
+    let token = req.body.token || req.query.token || req.headers.authorization;
+
+    
+    if (req.headers.authorization) {
+      token = token
+        .split(' ')
+        .pop()
+        .trim();
     }
-  }
-  getToken() {
-    return localStorage.getItem("id_token");
-  }
-  login(idToken) {
-    localStorage.setItem("id_token", idToken);
-    window.location.assign("/");
-  }
 
-  logout() {
-    localStorage.removeItem("id_token");
-    window.location.assign("/");
-  }
-}
+    console.log("token", token)
 
-export default new AuthService();
+
+    if (!token) {
+      return req;
+    }
+
+    try {
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      req.user = data;
+    }
+    catch {
+      console.log('Invalid token');
+    }
+
+    return req;
+  },
+  signToken: function ({ firstName, email, _id }) {
+    const payload = { firstName, email, _id };
+
+    return jwt.sign(
+      { data: payload },
+      secret,
+      { expiresIn: expiration }
+    );
+  }
+};
