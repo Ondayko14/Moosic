@@ -3,6 +3,20 @@ const { User, Comment, Post} = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers= { 
+    Query: {
+        posts: async () => {
+            return await Post.find();
+        },
+
+        comments: async (parent, {post, user}) => {
+            
+        }
+    
+    
+    
+    
+    
+    
     
 
 
@@ -12,13 +26,8 @@ const resolvers= {
 
 
 
-
-
-
-
-
-
-}
+    }
+};
 
 module.exports = resolvers;
 
