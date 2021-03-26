@@ -1,11 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
-
   type User {
     _id: ID
     firstName: String
@@ -19,6 +14,10 @@ const typeDefs = gql`
   text: String
  } 
   
+  type Comment {
+    _id: ID
+    text: String
+  }
   
   type Auth {
     token: ID
