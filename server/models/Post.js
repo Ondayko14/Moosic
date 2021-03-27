@@ -15,7 +15,7 @@ const PostSchema = new Schema(
     upVotes: {
       type: Number,
     },
-    comments: [Comment],
+
   },
   {
     toJSON: {

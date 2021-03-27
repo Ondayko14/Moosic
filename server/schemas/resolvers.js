@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers= { 
     Query: {
-        posts: async () => {
+        post: async () => {
             return await Post.find();
         },
 
@@ -36,7 +36,7 @@ const resolvers= {
               if (context.user) {
                 const post = new Post({ user });
         
-                await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } });
+                await User.findByIdAndUpdate(context.user._id, { $push: { post: post } });
         
                 return post;
               }
