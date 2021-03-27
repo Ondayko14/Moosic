@@ -8,6 +8,7 @@ const {User, Post, Comment} = require('../models')
         body:'test1',
         image:'test1',
         song:'test1',
+        postid:1,
         userid: 1
     },
     {
@@ -15,6 +16,7 @@ const {User, Post, Comment} = require('../models')
         body:'test2',
         image:'test2',
         song:'test2',
+        postid:2,
         userid: 2
 
     },
@@ -23,6 +25,7 @@ const {User, Post, Comment} = require('../models')
         body:'test3',
         image:'test3',
         song:'test3',
+        postid:3,
         userid: 1
     },
     {
@@ -30,16 +33,38 @@ const {User, Post, Comment} = require('../models')
         body:'test4',
         image:'test4',
         song:'test4',
+        postid:4,
         userid: 2
-    },
+    }
     ])
 
 
-
-
-
-
 console.log('posts seeded');
+
+const Comments= await Comment.insertMany([
+{
+    postid:1,
+    userid: 1,
+    body: 'test1'
+},
+{
+    postid:2,
+    userid: 2,
+    body: 'test2'
+},
+{
+    postid:3,
+    userid: 1,
+    body: 'test3'
+},
+{
+    postid:4,
+    userid: 2,
+    body: 'test4'
+},
+])
+
+console.log('comments seeded');
 
 await User.deleteMany();
 
