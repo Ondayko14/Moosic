@@ -15,6 +15,7 @@ const UserSchema = new Schema(
     email: {
       type: String,
     },
+    posts: [ Post ],
   },
   {
     toJSON: {
