@@ -1,25 +1,38 @@
 {
-  "name": "server",
+  "name": "moosic",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "watch": "nodemon",
-    "seed": "node seeders/seeds.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "npm start",
+    "start:dev": "concurrently \"npm run watch\" && \"cd ..\\client && npm start\"",
+    "watch": "nodemon server.js",
+    "seed": "cd server && npm run seed",
+    "heroku-postbuild": "cd server && npm run build"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ondayko14/Moosic.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ondayko14/Moosic/issues"
+  },
+  "homepage": "https://github.com/Ondayko14/Moosic#readme",
   "dependencies": {
     "apollo-server-express": "^2.21.2",
-    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "graphql": "^15.5.0",
+    "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.2"
+    "mongoose": "^5.12.2",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "concurrently": "^6.0.0"
   }
 }
