@@ -15,6 +15,11 @@ const typeDefs = gql`
   text: String
  } 
   
+ type Category {
+    _id: ID
+    name: String
+  }
+  
   type Comment {
     _id: ID
     text: String
