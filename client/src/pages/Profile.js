@@ -3,19 +3,11 @@ import { Redirect, useParams } from "react-router-dom";
 
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-<<<<<<< HEAD
-import { ADD_FRIEND } from "../utils/mutations";
-=======
->>>>>>> pages/components
 import Auth from "../utils/auth";
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
 
-<<<<<<< HEAD
-  const [addFriend] = useMutation(ADD_FRIEND);
-=======
->>>>>>> pages/components
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
@@ -40,11 +32,7 @@ const Profile = (props) => {
     );
   }
 
-<<<<<<< HEAD
-  const handleClick = async () => {
-=======
   /* const handleClick = async () => {
->>>>>>> pages/components
     try {
       await addFriend({
         variables: { id: user._id },
@@ -52,11 +40,7 @@ const Profile = (props) => {
     } catch (e) {
       console.error(e);
     }
-<<<<<<< HEAD
-  };
-=======
   }; */
->>>>>>> pages/components
 
   return (
     <body>
@@ -102,8 +86,4 @@ const Profile = (props) => {
   );
 };
 
-<<<<<<< HEAD
 export default Profile;
-=======
-export default Profile;
->>>>>>> pages/components
