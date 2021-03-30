@@ -1,53 +1,48 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    post: [Post]
-    comment: [Comment]
-  }
+    type Post {
+        _id: ID
+        postText: String
+        createdAt: String
+        username: String
+        commentCount: Int
+        comments: [Comment]
+    }
 
- type Post {
-   _id: ID
-  text: String
- } 
-  
- type Category {
-    _id: ID
-    name: String
-  }
-  
-  type Comment {
-    _id: ID
-    text: String
-    post: [Post]
-    user: [User]
-  }
-  
-  type Auth {
-    token: ID
-    user: User
-  }
-  type Query {
-    post: [Post]
-    user: [User]
-    comment: [Comment]
-    
-  }
-  type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addPost(post: [ID]!): Post
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updatePost(_id: ID!, quantity: Int!): Post
-    login(email: String!, password: String!): Auth
-  }
+    type Comment {
+        _id: ID
+        commentBody: String
+        createdAt: String
+        username: String
+    }
 
+    type User {
+        _id: ID
+        username: String
+        email: String
+        posts: [Post]
+    }
 
+    type Query {
+        me: User
+        users: [User]
+        user(username: String!): User
+        posts(username: String): [Post]
+        post(_id: ID!): Post
+    }
 
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        addPost(postText: String!): Post
+        addComment(postId: ID!, commentBody: String!): Post
+    }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
 `;
 
 module.exports = typeDefs;
