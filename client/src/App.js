@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import Feed from "./pages/Feed";
+import NoMatch from './pages/NoMatch';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -37,6 +38,7 @@ function App() {
                   <Route exact path="/signup" component={Signup} />
                   <Route exact path="/profile/:username?" component={Profile} />
                   <Route exact path="/post/:id" component={Post} />
+                  <Route component={NoMatch} />
                 </Switch>
               </StoreProvider>
             </div>
