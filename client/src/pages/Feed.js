@@ -4,7 +4,6 @@ import { QUERY_POSTS, QUERY_ME_BASIC } from "../utils/queries";
 import PostList from "../components/PostList";
 import PostForm from "../components/PostForm";
 import Auth from "../utils/auth";
-import Header from "../components/Header";
 
 const Feed = () => {
   const loggedIn = Auth.loggedIn();
