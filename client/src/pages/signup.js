@@ -7,7 +7,7 @@ const Signup = () => {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
   const [addUser, { error }] = useMutation(ADD_USER);
-
+// test
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
