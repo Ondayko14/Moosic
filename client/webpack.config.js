@@ -5,6 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = {
     entry: {
+        index: './public/index.html',
         app: './src/index.js',
         feed: './src/pages/Feed.js',
         post: './src/pages/Post.js',
