@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 
@@ -76,7 +76,6 @@ const Profile = (props) => {
         {userParam && (
           <button
             className="btn text-dark font-weight-bold mb-5"
-            onClick={handleClick}
           >
             Follow
           </button>
