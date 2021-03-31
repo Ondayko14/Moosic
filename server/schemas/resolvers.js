@@ -1,71 +1,88 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Comment, Post } = require("../models");
-const { signToken } = require("../utils/auth");
+const { User, Post } = require("../models");
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  Query: {
-   
-    post: async (parent, { _id }) => {
-      return await Post.findById(_id).populate("post");
+    Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                    .select('-__v -password')
+                    .populate('posts')
+    
+                return userData;
+            }
+            throw new AuthenticationError('Not logged in');
+        },
+        posts: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Post.find(params).sort({ createdAt: -1 });
+        },
+        post: async (parent, { _id }) => {
+            return Post.findOne({ _id });
+        },
+        users: async () => {
+            return User.find()
+                .select('-__v -password')
+                .populate('posts');
+        },
+        user: async (parent, { username }) => {
+            return User.findOne({ username })
+                .select('-__v -password')
+                .populate('posts');
+        }
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "show.posts",
-          populate: "post",
-        });
-        return user;
-      }
-    },
-  },
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
 
-  Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+            return { token, user };
+        },
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+            
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
 
-      return { token, user };
-    },
-    addPost: async (parent, { post }, comment) => {
-      console.log(post);
-      if (context.user) {
-        const post = new Post({ user });
+            const correctPw = await user.isCorrectPassword(password);
 
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { post: post },
-        });
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
 
-        return post;
-      }
+            const token = signToken(user);
+            return { token, user };
+        },
+        addPost: async (parent, args, context) => {
+            if (context.user) {
+                const post = await Post.create({ ...args, username: context.user.username });
 
-      throw new AuthenticationError("Not logged in");
-    },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { posts: post._id } },
+                    { new: true }
+                );
 
-      throw new AuthenticationError("Not logged in");
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+                return post;
+            }
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addComment: async (parent, { postId, commentBody }, context) => {
+            if (context.user) {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $push: { comments: { commentBody, username: context.user.username } } },
+                    { new: true, runValidators: true }
+                );
 
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
-    },
-  },
+                return updatedPost;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        }
+    }
 };
+
 module.exports = resolvers;
