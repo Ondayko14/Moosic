@@ -43,7 +43,7 @@ module.exports = {
             name: "Moosic",
             short_name: "Moosic",
             description: "Music sharing social media platform",
-            start_url: "../?????????????????????????????????????",
+            start_url: "./src/index.js",
             background_color: "#D3D3D3",
             theme_color: "#ffffff",
             fingerprints: false,
