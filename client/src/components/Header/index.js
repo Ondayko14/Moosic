@@ -13,7 +13,7 @@ const Header = () => {
     <header className="bg-secondary mb-4 py-2 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to="/">
-          <h1>Moosic</h1>
+        <img src="/assets/icons/moosic.png" className="moosic-logo mt-3" />
         </Link>
 
         <nav className="text-center">

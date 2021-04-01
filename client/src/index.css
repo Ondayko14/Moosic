@@ -1,10 +1,10 @@
 :root {
   --primary: #2cad7c;
-  --secondary: #3039b9;
-  --tertiary: #b2c2c1;
+  --secondary: black;
+  --tertiary: rgba(216, 216, 116, 0.5);
   --quatrinary: #cadbda;
-  --light: #e1f5f4;
-  --dark: #6c7575;
+  --light: rgb(255, 255, 225);
+  --dark: rgb(216, 216, 116);
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -26,7 +26,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Quicksand';
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
@@ -40,10 +40,18 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Quicksand';
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
+}
+
+.moosic-logo {
+  width: 225px;
+}
+
+.moosic-logo:hover {
+  opacity: .5;
 }
 
 h1 {
@@ -91,13 +99,18 @@ nav {
 
 nav a {
   padding: 6px 10px;
-  margin: 0 15px;
+  margin: 0 25px;
   transition: all 0.2s;
 }
 
 nav a:hover {
   color: var(--secondary);
   background-color: var(--dark);
+  text-decoration: none;
+  padding: 6px 10px;
+  margin: 0 25px;
+  border-radius: var(--border-radius);
+  border: none;
 }
 
 .page-title {
@@ -107,7 +120,7 @@ nav a:hover {
   font-size: 2.5rem;
 }
 
-.btn,
+.btn, .signup-btn,
 .pill {
   font-size: 1.3rem;
   text-decoration: none;
@@ -115,16 +128,22 @@ nav a:hover {
   margin: 5px 0;
   border-radius: var(--border-radius);
   border: none;
-  color: var(--dark);
+  color: var(--secondary);
   outline: none;
-  background-color: var(--secondary);
+  background-color: var(--dark);
   transition: all 0.5s;
+  font-family: 'Quicksand';
 }
 
 .btn:hover,
 .pill:hover {
   color: var(--secondary);
-  background-color: var(--dark);
+  background-color: var(--tertiary);
+}
+
+.signup-btn:hover {
+  color: var(--dark);
+  background-color: var(--secondary);
 }
 
 .btn-inline {
@@ -134,7 +153,7 @@ nav a:hover {
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
+  border: 10px solid var(--dark);
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
@@ -144,12 +163,12 @@ nav a:hover {
   color: var(--secondary);
   margin: 0;
   background-color: var(--dark);
-  padding: 0.625rem;
+  padding: 0.5rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
 .card-body {
-  padding: 2.5%;
+  padding: 4.5%;
   font-size: 1.4rem;
 }
 
@@ -169,9 +188,10 @@ nav a:hover {
   width: 100%;
   padding: 0.75rem;
   margin: 0.2rem 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 2px solid var(--dark);
   border-radius: var(--border-radius);
+  font-family: "Quicksand";
 }
 
 [type='radio']:checked,
