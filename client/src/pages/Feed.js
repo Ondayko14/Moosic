@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_POSTS, QUERY_ME_BASIC } from "../utils/queries";
 import PostList from "../components/PostList";
 import PostForm from "../components/PostForm";
 import Auth from "../utils/auth";
+// import { idbPromise } from "../utils/helpers";
 
-const Feed = () => {
+function Feed() {
   const loggedIn = Auth.loggedIn();
-  const { loading, data } = useQuery(QUERY_POSTS);
+  const { loading: loadingPosts, data } = useQuery(QUERY_POSTS);
+  const { loading } = useQuery(QUERY_POSTS);
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const posts = data?.posts || [];
+  //const [dbPosts, setDbPosts] = useState([]);
+
+  /* useEffect(() => {
+    if (posts) {
+      setDbPosts(posts.posts)
+      posts.posts.forEach(post => {
+        idbPromise('posts', 'put', post);
+      });
+    } else if (!loadingPosts) {
+      idbPromise('posts', 'get').then((idbPosts) => {
+        console.log('idbPosts: ', idbPosts)
+        setDbPosts(idbPosts.reverse());
+      })
+    }
+  }, [posts, loadingPosts, setDbPosts]) */
 
   return (
     <main>
