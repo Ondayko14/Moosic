@@ -61,7 +61,7 @@ const Profile = (props) => {
       </section>
       <section className="text-center">
         <div className="image">
-          <img src={user.profileImg} className="rounded-circle" width="200" />
+          <img src={user.profileImg} className="rounded-circle" width="200" alt="Profile" />
           <h2 className="name mt-5 font-weight-bold text-light">
             {user.fullname}
           </h2>
