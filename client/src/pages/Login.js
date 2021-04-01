@@ -33,9 +33,9 @@ function Login(props) {
         ← Go to Signup
       </Link>
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+      <h2 className="mt-3">Login</h2>
+      <form onSubmit={handleFormSubmit} className="mt-4">
+        <div className="flex-row space-between my-4">
           <label htmlFor="email">Email address:</label>
           <input
             placeholder="youremail@test.com"
@@ -43,6 +43,7 @@ function Login(props) {
             type="email"
             id="email"
             onChange={handleChange}
+            className="form-input"
           />
         </div>
         <div className="flex-row space-between my-2">
@@ -53,6 +54,7 @@ function Login(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
+            className="form-input"
           />
         </div>
         {
@@ -61,8 +63,8 @@ function Login(props) {
           </div> : null
         }
         <div className="flex-row flex-end">
-          <button type="submit">
-            Submit
+          <button type="submit" className="btn bg-dark text-secondary mt-4">
+            Login
           </button>
         </div>
       </form>

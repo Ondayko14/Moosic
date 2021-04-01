@@ -36,11 +36,11 @@ const Signup = () => {
     <main className='flex-row justify-center mb-4'>
       <div className='col-12 col-md-6'>
         <div className='card'>
-          <h4 className='card-header'>Sign Up</h4>
+          <h4 className='card-header pb-3'>Sign Up</h4>
           <div className='card-body'>
             <form onSubmit={handleFormSubmit}>
               <input
-                className='form-input'
+                className='form-input mt-2 mb-4'
                 placeholder='Your username'
                 name='username'
                 type='username'
@@ -49,7 +49,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <input
-                className='form-input'
+                className='form-input mb-4'
                 placeholder='Your email'
                 name='email'
                 type='email'
@@ -58,7 +58,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <input
-                className='form-input'
+                className='form-input mb-4'
                 placeholder='******'
                 name='password'
                 type='password'
@@ -66,7 +66,7 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className='btn d-block w-100' type='submit'>
+              <button className='signup-btn d-block w-100' type='submit'>
                 Submit
               </button>
             </form>
