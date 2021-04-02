@@ -28,13 +28,17 @@
   "homepage": "https://github.com/Ondayko14/Moosic#readme",
   "dependencies": {
     "apollo-server-express": "^2.21.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
+    "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.2"
+    "mongoose": "^5.12.2",
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"

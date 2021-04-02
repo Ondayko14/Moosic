@@ -4,7 +4,7 @@ import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 function Signup(props) {
-  const [formState, setFormState] = useState({  email: '', password: '' });
+  const [formState, setFormState] = useState({ username:'', email: '', password: '' });
 
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -21,7 +21,7 @@ function Signup(props) {
     Auth.login(token);
   };
 
-  const handleChange = event => {
+  var handleChange = event => {
     const { name, value } = event.target;
 
 
@@ -42,7 +42,7 @@ function Signup(props) {
                 className='form-input mt-2 mb-4'
                 placeholder='Your username'
                 name='username'
-                type= 'username'
+                type='username'
                 id='username'
                 value={formState.username}
                 onChange={handleChange}
