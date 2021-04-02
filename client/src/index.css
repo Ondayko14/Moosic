@@ -26,7 +26,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
@@ -40,7 +40,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
@@ -51,7 +51,7 @@ h6 {
 }
 
 .moosic-logo:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 h1 {
@@ -120,7 +120,8 @@ nav a:hover {
   font-size: 2.5rem;
 }
 
-.btn, .signup-btn,
+.btn,
+.signup-btn,
 .pill {
   font-size: 1.3rem;
   text-decoration: none;
@@ -132,7 +133,7 @@ nav a:hover {
   outline: none;
   background-color: var(--dark);
   transition: all 0.5s;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
 }
 
 .btn:hover,
@@ -192,15 +193,20 @@ nav a:hover {
   border: 2px solid var(--dark);
   border-radius: var(--border-radius);
   font-family: "Quicksand";
+  outline: none;
 }
 
-[type='radio']:checked,
-[type='radio']:not(:checked) {
+.form-input:hover {
+  background-color: var(--light);
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
   position: absolute;
   left: -9999px;
 }
-[type='radio']:checked + label,
-[type='radio']:not(:checked) + label {
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
   position: relative;
   padding-left: 25px;
   cursor: pointer;
@@ -210,9 +216,9 @@ nav a:hover {
   margin-right: 0.2rem;
 }
 
-[type='radio']:checked + label:before,
-[type='radio']:not(:checked) + label:before {
-  content: '';
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -222,9 +228,9 @@ nav a:hover {
   border-radius: 100%;
   background: #fff;
 }
-[type='radio']:checked + label:after,
-[type='radio']:not(:checked) + label:after {
-  content: '';
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: "";
   width: 12px;
   height: 12px;
   background-color: var(--secondary);
@@ -236,13 +242,13 @@ nav a:hover {
   transition: all 0.2s ease;
 }
 
-[type='radio']:not(:checked) + label:after {
+[type="radio"]:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-[type='radio']:checked + label:after {
+[type="radio"]:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -252,12 +258,17 @@ nav a:hover {
 .container {
   width: 85%;
   max-width: 1200px;
-  margin-left: auto;
+  margin-left: 5%;
   margin-right: auto;
 }
 
 .container-fluid {
   width: 92%;
+}
+
+.album-image {
+  width: 100%;
+  max-width: 450px;
 }
 
 /* DISPLAY */
@@ -799,6 +810,10 @@ nav a:hover {
   color: var(--error);
 }
 
+.listbox-text {
+  font-size: 14px;
+}
+
 /* BACKGROUND UTILS */
 .bg-primary {
   background-color: var(--primary);
@@ -820,7 +835,7 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-/* FLEX CONTENT */
+/* CONTENT */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
