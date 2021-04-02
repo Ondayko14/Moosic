@@ -46,13 +46,14 @@ const PostForm = () => {
             setText('');
             setCharacterCount(0);
         } catch (e) {
+            console.log("error is in handleformsubmit");
             console.error(e);
         }
     };
 
     return (
         <div>
-            <p className={`m-0 ${characterCount === 280 ? 'text-error' : ''}`}>
+            <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
                 Character Count: {characterCount}/280
                 {error && <span className="ml-2">Something went wrong...</span>}
             </p>

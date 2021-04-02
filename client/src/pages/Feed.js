@@ -4,6 +4,7 @@ import { QUERY_POSTS, QUERY_ME_BASIC } from "../utils/queries";
 import PostList from "../components/PostList";
 import PostForm from "../components/PostForm";
 import Auth from "../utils/auth";
+import SpotifyApp from  "../SpotifyApp";
 
 const Feed = () => {
   const loggedIn = Auth.loggedIn();
@@ -17,6 +18,7 @@ const Feed = () => {
         {loggedIn && (
           <div className="col-12 mb-3">
             <PostForm />
+            <SpotifyApp />
           </div>
         )}
         <div className={`col-12 mb-3 ${loggedIn && "col-lg-8"}`}>
